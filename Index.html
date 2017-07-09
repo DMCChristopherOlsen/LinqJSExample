@@ -1,0 +1,116 @@
+<html>
+<head>
+    <title>Linq.js Example</title>
+    <link rel="stylesheet" href="Main.css"/>
+    <script src="jquery-3.2.1.min.js"></script>
+    <script src="linq.min.js"></script>
+    <script src="Data.js"></script>
+    <script src="Main.js"></script>
+</head>
+<body>
+    <section>
+        <header><h1>All People, Un-sorted</h1></header>
+        <table id="all-people">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Occupation</th>
+                    <th>Age (years)</th>
+                </tr>
+            </thead>
+        </table>
+    </section>
+    <hr/>
+    <section>
+        <header><h1>All People, Sorted By Last Name</h1></header>
+        <table id="all-people-sorted-by-last-name">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Occupation</th>
+                    <th>Age (years)</th>
+                </tr>
+            </thead>
+        </table>
+    </section>
+    <hr/>
+    <section>
+        <header><h1>People With Last Name Starting With "D", Sorted By Age In Years Descending</h1></header>
+        <table id="d-people-sorted-by-age">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Occupation</th>
+                    <th>Age (years)</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </section>
+    <hr/>
+    <section>
+        <header><h1>Number of People Per Age</h1></header>
+        <table id="people-grouped-by-age">
+            <thead>
+                <tr>
+                    <th>Age</th>
+                    <th>Number of People</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </section>
+    <hr/>
+    <section>
+        <header><h1>People with Industry</h1></header>
+        <table id="people-with-industry">
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Industry</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </section>
+    <hr/>
+    <section>
+        <header><h1>Percentage of People in Each Industry</h1></header>
+        <table id="people-with-industry-percentage">
+            <thead>
+                <tr>
+                    <th>Industry</th>
+                    <th>Percentage</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </section>
+    <hr/>
+    <section>
+        <header><h1>People JOINed with industry</h1></header>
+        <table id="people-joined-with-industry">
+            <thead>
+                <tr>
+                    <th>Full name</th>
+                    <th>Industry name</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </section>
+</body>
+</html>
