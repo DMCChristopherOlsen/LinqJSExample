@@ -35,35 +35,6 @@ $(document).ready(function(){
     });
 
 
-    var peopleWithIndustry = Enumerable.From(people).Select(function(person){
-        var personIndustry = Enumerable.From(industries).FirstOrDefault('', function(industry){
-                                                                            return Enumerable.From(industry.Occupations).Any(function(occupation){
-                                                                                return occupation == person.Occupation;
-                                                                            });
-                                                                        });
-                                                                        return {
-                                                                            FullName: person.LastName + ', ' + person.FirstName,
-                                                                            Industry: personIndustry.Name
-                                                                        };
-                                                                    }).ToArray();
-    peopleWithIndustry.forEach(function(person){
-        $('#people-with-industry').find('tbody').append('<tr><td>' + person.FullName + '</td><td>' + person.Industry + '</td></tr>');
-    });
-
-    var percentageByIndustry = Enumerable.From(peopleWithIndustry).GroupBy(function(person){
-                                                                                return person.Industry;
-                                                                            }, function(person){
-                                                                                return person;
-                                                                            }, function(industryName, group){
-                                                                                return {
-                                                                                    Industry: industryName,
-                                                                                    Percentage: ((group.Count() / people.length) * 100) + '%'
-                                                                                };
-    }).ToArray();
-    percentageByIndustry.forEach(function(item){
-        $('#people-with-industry-percentage').find('tbody').append('<tr><td>' + item.Industry + '</td><td>' + item.Percentage + '</td></tr>');
-    });
-    
     var flattenedOccupations = Enumerable.From(industries).SelectMany(function(industry){
         return Enumerable.From(industry.Occupations).Select(function(occupation){
             return {
@@ -83,10 +54,42 @@ $(document).ready(function(){
                                                                     function(person, occupation){
                                                                         return {
                                                                             FullName: person.FirstName + " " + person.LastName,
-                                                                            Occupation: occupation.Industry
+                                                                            Industry: occupation.Industry
                                                                         };
                                                                     }).ToArray();
     peopleJoinedWithIndustries.forEach(function(item){
-        $('#people-joined-with-industry').find('tbody').append('<tr><td>' + item.FullName + '</td><td>' + item.Occupation + '</td></tr>');
+        $('#people-joined-with-industry').find('tbody').append('<tr><td>' + item.FullName + '</td><td>' + item.Industry + '</td></tr>');
     });
+
+
+    // var peopleWithIndustry = Enumerable.From(people).Select(function(person){
+    //     var personIndustry = Enumerable.From(industries).FirstOrDefault('', function(industry){
+    //                                                                         return Enumerable.From(industry.Occupations).Any(function(occupation){
+    //                                                                             return occupation == person.Occupation;
+    //                                                                         });
+    //                                                                     });
+    //                                                                     return {
+    //                                                                         FullName: person.LastName + ', ' + person.FirstName,
+    //                                                                         Industry: personIndustry.Name
+    //                                                                     };
+    //                                                                 }).ToArray();
+    // peopleWithIndustry.forEach(function(person){
+    //     $('#people-with-industry').find('tbody').append('<tr><td>' + person.FullName + '</td><td>' + person.Industry + '</td></tr>');
+    // });
+
+    var percentageByIndustry = Enumerable.From(peopleJoinedWithIndustries).GroupBy(function(person){
+                                                                                return person.Industry;
+                                                                            }, function(person){
+                                                                                return person;
+                                                                            }, function(industryName, group){
+                                                                                return {
+                                                                                    Industry: industryName,
+                                                                                    Percentage: ((group.Count() / (people.length != 0 ? people.length : 1)) * 100) + '%'
+                                                                                };
+    }).ToArray();
+    percentageByIndustry.forEach(function(item){
+        $('#people-with-industry-percentage').find('tbody').append('<tr><td>' + item.Industry + '</td><td>' + item.Percentage + '</td></tr>');
+    });
+    
+
 })
